@@ -5,16 +5,13 @@
  */
 package net.htlgkr.gritschm190062.hue1;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author maxim
  */
 public class EratosthenesPrimeSieve implements PrimeSieve {
 
-    private int grenze;
-    private boolean[] primes = new boolean[grenze];
+    private boolean[] primes;
 
     public static void main(String[] args) {
         EratosthenesPrimeSieve sieb = new EratosthenesPrimeSieve(20);
@@ -23,7 +20,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
     }
 
     public EratosthenesPrimeSieve(int grenze) {
-        grenze = grenze;
+        primes = new boolean[grenze];
     }
 
     @Override
@@ -42,14 +39,16 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
         for (int i = 2; i < primes.length; i++) {
             if (primes[i] == true) {
-                int y = 2;
-                int x = (int) Math.pow(i, y);
-                while (x <= primes.length) {
-                    primes[x] = false;
-                    y++;
-                    x = (int) Math.pow(i, y);
 
+                for (int j = 2; j < primes.length; j++) {
+                    if (i * j >= primes.length) {
+                        break;
+                    } else {
+                        primes[i * j] = false;
+
+                    }
                 }
+
             }
         }
     }
