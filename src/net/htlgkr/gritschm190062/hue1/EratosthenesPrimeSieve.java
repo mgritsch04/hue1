@@ -5,6 +5,9 @@
  */
 package net.htlgkr.gritschm190062.hue1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author maxim
@@ -17,6 +20,8 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
         EratosthenesPrimeSieve sieb = new EratosthenesPrimeSieve(20);
         sieb.getPrimes();
         sieb.printPrimes();
+        System.out.println("");
+        sieb.bsp2();
     }
 
     public EratosthenesPrimeSieve(int grenze) {
@@ -60,6 +65,25 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
                 System.out.println(i + ",");
             }
 
+        }
+    }
+
+    public void bsp2() {
+        List<Integer> primeNumbers = new ArrayList<>();
+        for (int i = 2; i < primes.length; i++) {
+            if (primes[i] == true) {
+                primeNumbers.add(i);
+            }
+        }
+
+        for (int i = 4; i < primes.length; i = i + 2) {
+            for (int primeNumber : primeNumbers) {
+                for (int primeNumber1 : primeNumbers) {
+                    if ((primeNumber + primeNumber1) == i) {
+                        System.out.println(i + " = " + primeNumber + " + " + primeNumber1);
+                    }
+                }
+            }
         }
     }
 }
